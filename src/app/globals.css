@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
+
+  /* Large-desktop breakpoints: used for container width, grids, type and spacing */
+  --breakpoint-xl1: 1440px;
+  --breakpoint-xl2: 1536px;
+  --breakpoint-xl3: 1680px;
+  --breakpoint-xl4: 1920px;
+
+  /* Brand (carried over from endsars.online) */
+  --color-green: #008751;
+  --color-green-dark: #006b40;
+  --color-green-light: #00a86b;
+  --color-green-tint: #e7f4ed;
+
+  /* Ankora additions */
+  --color-gold: #d4a017;
+  --color-gold-dark: #8a6508;
+  --color-gold-tint: #f8efd3;
+
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #1a1a1a;
+  --color-muted: #666666;
+  --color-line: #e4e4e4;
+  --color-surface: #f7f7f7;
+  --color-surface-2: #efefef;
+  --color-danger: #c0392b;
+}
+
+/* Root font size steps up progressively at every large-desktop breakpoint (not just a single
+   jump at the end), so every rem-based size and spacing value in the app grows with it. This is
+   the same "keep extending the scale past 1280px" approach used for container width, section
+   padding and type size throughout this file and in Container.tsx / ProductCard.tsx / etc. */
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+@media (min-width: 1440px) { html { font-size: 16.5px; } }
+@media (min-width: 1536px) { html { font-size: 17px; } }
+@media (min-width: 1680px) { html { font-size: 17.5px; } }
+@media (min-width: 1920px) { html { font-size: 18.5px; } }
+
+body { background: #fff; color: var(--color-ink); font-family: var(--font-sans); }
+::selection { background: var(--color-green); color: #fff; }
+
+:focus-visible { outline: 2px solid var(--color-green); outline-offset: 3px; border-radius: 4px; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@keyframes drawer-in { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes drawer-out { from { transform: translateX(0); } to { transform: translateX(100%); } }
+@keyframes drawer-in-left { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@keyframes drawer-out-left { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+.drawer-right[data-state="open"] { animation: drawer-in 280ms cubic-bezier(0.22, 1, 0.36, 1); }
+.drawer-right[data-state="closed"] { animation: drawer-out 200ms ease-in forwards; }
+.drawer-left[data-state="open"] { animation: drawer-in-left 280ms cubic-bezier(0.22, 1, 0.36, 1); }
+.drawer-left[data-state="closed"] { animation: drawer-out-left 200ms ease-in forwards; }
+.overlay[data-state="open"] { animation: fade-in 200ms ease; }
+.overlay[data-state="closed"] { animation: fade-out 200ms ease forwards; }
+
+/* The hero loom: strips rise into place once on load */
+@keyframes warp-in { from { transform: translateY(2.5rem); opacity: 0; } to { transform: none; opacity: 1; } }
+.warp { animation: warp-in 800ms cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: calc(var(--i) * 90ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0ms !important; transition-duration: 1ms !important; }
+}
