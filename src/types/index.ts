@@ -4,15 +4,15 @@ export type FabricPattern =
   | "akwete"
   | "george"
   | "ankara"
-  | "atiku"
+  // | "atiku"
   | "hollandais"
   | "lace"
   | "guinea-brocade"
-  | "damask"
+  | "tribal-ankara"
   | "velvet"
   | "senator"
-  | "brocade"
-  | "kente";
+  | "brocade";
+// | "kente";
 
 export interface FabricColor {
   name: string;
