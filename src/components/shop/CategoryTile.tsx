@@ -1,21 +1,30 @@
-import type { Category } from "@/types";
+import type { Category, FabricPattern } from "@/types";
 import Link from "next/link";
-import { CategoryImage } from "./SwatchImage";
+import { SwatchImage } from "./SwatchImage";
+
+interface Props {
+  category: Category;
+  count: number;
+  /** A product photo from this category, picked by the caller. Falls back to category.image, then the generated swatch. */
+  image?: string | null;
+  pattern?: FabricPattern;
+  sampleColors?: string[];
+}
 
 export function CategoryTile({
   category,
   count,
+  image,
+  pattern,
   sampleColors,
-}: {
-  category: Category;
-  count: number;
-  sampleColors?: string[];
-}) {
+}: Props) {
   return (
     <Link href={`/category/${category.slug}`} className="group block">
-      <CategoryImage
-        category={category}
-        sampleColors={sampleColors}
+      <SwatchImage
+        src={image ?? category.image}
+        pattern={pattern ?? category.pattern}
+        colors={sampleColors ?? ["#008751", "#D4A017", "#ffffff"]}
+        alt={`${category.name} fabric`}
         sizes="(min-width:1440px) 13vw, (min-width:1024px) 22vw, (min-width:640px) 30vw, 48vw"
         className="aspect-4/5 rounded-sm transition-transform duration-500 [&_svg]:transition-transform [&_svg]:duration-500 group-hover:[&_svg]:scale-105"
       />

@@ -20,6 +20,11 @@
   --color-gold-dark: #8a6508;
   --color-gold-tint: #f8efd3;
 
+  /* Adire indigo: the deep background of the home page's occasions carousel. Indigo-dyed cloth
+     is one of the fabric families Ankora sells, and gold + brand green pick up the rest of the palette. */
+  --color-adire: #101a44;
+  --color-adire-deep: #0a1233;
+
   --color-ink: #0a0a0a;
   --color-ink-soft: #1a1a1a;
   --color-muted: #666666;
@@ -164,6 +169,22 @@ body {
   animation-delay: calc(var(--i) * 90ms);
 }
 
+/* Category tile drift: the photo sits fixed at 110% (just enough overscan to pan without
+   showing blank edges) and only ever translates, never scales, so it reads as a slow pan
+   rather than a zoom. Scale is identical at every keyframe stop. */
+@keyframes tile-drift {
+  0%,
+  100% {
+    transform: scale(1.1) translate(-2.2%, -1.4%);
+  }
+  50% {
+    transform: scale(1.1) translate(2.2%, 1.4%);
+  }
+}
+.animate-tile-drift {
+  animation: tile-drift 11s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -175,4 +196,20 @@ body {
     animation-delay: 0ms !important;
     transition-duration: 1ms !important;
   }
+}
+
+/* Occasions carousel background: Adire indigo with a soft gold glow top-right and a brand-green glow bottom-left. */
+.bg-occasions {
+  background-color: var(--color-adire);
+  background-image:
+    radial-gradient(
+      60rem 28rem at 92% -8%,
+      rgb(212 160 23 / 0.16),
+      transparent 70%
+    ),
+    radial-gradient(
+      48rem 24rem at -6% 108%,
+      rgb(0 135 81 / 0.2),
+      transparent 70%
+    );
 }
