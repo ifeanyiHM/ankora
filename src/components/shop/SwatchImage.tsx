@@ -93,7 +93,7 @@ export function CategoryImage({
     <SwatchImage
       src={category.image}
       pattern={category.pattern}
-      colors={sampleColors ?? ["#008751", "#D4A017", "#ffffff"]}
+      colors={sampleColors ?? ["#163D2A", "#D4A017", "#ffffff"]}
       alt={`${category.name} fabric`}
       sizes={sizes}
       priority={priority}

@@ -17,7 +17,7 @@ export function ProductForm({ categories, product }: { categories: Category[]; p
   const [name, setName] = useState(product?.name ?? "");
   const [categoryId, setCategoryId] = useState(product ? categories.find((c) => c.slug === product.categorySlug)?.id ?? "" : categories[0]?.id ?? "");
   const [price, setPrice] = useState(product?.price ?? 0);
-  const [colors, setColors] = useState<FabricColor[]>(product?.colors.length ? product.colors : [{ name: "", hex: "#008751" }]);
+  const [colors, setColors] = useState<FabricColor[]>(product?.colors.length ? product.colors : [{ name: "", hex: "#163D2A" }]);
   const [description, setDescription] = useState(product?.description ?? "");
   const [badge, setBadge] = useState<ProductBadge | "">(product?.badge ?? "");
   const [featured, setFeatured] = useState(product?.featured ?? false);
@@ -80,7 +80,7 @@ export function ProductForm({ categories, product }: { categories: Category[]; p
               </div>
             ))}
           </div>
-          <button type="button" onClick={() => setColors((cs) => [...cs, { name: "", hex: "#008751" }])} className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-green-dark hover:underline xl1:mt-3 xl1:text-base xl3:text-lg"><Plus className="size-4 xl1:size-[1.1rem]" /> Add colour</button>
+          <button type="button" onClick={() => setColors((cs) => [...cs, { name: "", hex: "#163D2A" }])} className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-green-dark hover:underline xl1:mt-3 xl1:text-base xl3:text-lg"><Plus className="size-4 xl1:size-[1.1rem]" /> Add colour</button>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 xl1:gap-6 xl3:gap-7">
           <div>

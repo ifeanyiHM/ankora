@@ -23,7 +23,7 @@ export function CategoryTile({
       <SwatchImage
         src={image ?? category.image}
         pattern={pattern ?? category.pattern}
-        colors={sampleColors ?? ["#008751", "#D4A017", "#ffffff"]}
+        colors={sampleColors ?? ["#163D2A", "#D4A017", "#ffffff"]}
         alt={`${category.name} fabric`}
         sizes="(min-width:1440px) 13vw, (min-width:1024px) 22vw, (min-width:640px) 30vw, 48vw"
         className="aspect-4/5 rounded-sm transition-transform duration-500 [&_svg]:transition-transform [&_svg]:duration-500 group-hover:[&_svg]:scale-105"

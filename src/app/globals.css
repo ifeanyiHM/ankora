@@ -9,11 +9,11 @@
   --breakpoint-xl3: 1680px;
   --breakpoint-xl4: 1920px;
 
-  /* Brand (carried over from endsars.online) */
-  --color-green: #008751;
-  --color-green-dark: #006b40;
-  --color-green-light: #00a86b;
-  --color-green-tint: #e7f4ed;
+  /* Brand */
+  --color-green: #163D2A;
+  --color-green-dark: #0D2B1D;
+  --color-green-light: #28563F;
+  --color-green-tint: #E8EFEA;
 
   /* Ankora additions */
   --color-gold: #d4a017;
@@ -200,8 +200,8 @@ body {
 
 /* Occasions carousel background: Adire indigo with a soft gold glow top-right and a brand-green glow bottom-left. */
 .bg-occasions {
-  background-color: var(--color-adire);
-  background-image:
+  background-color: #163d2a;
+  /* background-image:
     radial-gradient(
       60rem 28rem at 92% -8%,
       rgb(212 160 23 / 0.16),
@@ -211,5 +211,5 @@ body {
       48rem 24rem at -6% 108%,
       rgb(0 135 81 / 0.2),
       transparent 70%
-    );
+    ); */
 }
