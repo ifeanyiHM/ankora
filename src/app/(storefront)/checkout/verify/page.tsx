@@ -1,4 +1,5 @@
 import { ClearCart } from "@/components/checkout/ClearCart";
+import { CopyOrderNumber } from "@/components/checkout/CopyOrderNumber";
 import { OrderTimeline } from "@/components/track/OrderTimeline";
 import { buttonClasses } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -57,12 +58,10 @@ export default async function VerifyPage({
               way to {order.email}. We will contact you on {order.phone} about
               delivery to {order.address}, {order.city}, {order.state}.
             </p>
-            <p className="mt-2 text-sm text-muted xl1:text-base xl3:text-lg">
-              Order number:{" "}
-              <span className="font-semibold text-ink">
-                {order.orderNumber}
-              </span>
-            </p>
+            <CopyOrderNumber
+              orderNumber={order.orderNumber}
+              hint="Copy this number and keep it safe. To track your order, open Track order and enter it together with the email or phone number you used at checkout."
+            />
 
             <div className="mt-8 xl1:mt-10 xl3:mt-12">
               <OrderTimeline status={order.status} />
@@ -130,12 +129,10 @@ export default async function VerifyPage({
                   : "You have not been charged. Your cart is saved, so you can try again."}
             </p>
             {order && (
-              <p className="mt-2 text-sm text-muted xl1:text-base xl3:text-lg">
-                Order number:{" "}
-                <span className="font-semibold text-ink">
-                  {order.orderNumber}
-                </span>
-              </p>
+              <CopyOrderNumber
+                orderNumber={order.orderNumber}
+                hint="Quote this number if you contact us about this order."
+              />
             )}
             <div className="mt-8 flex flex-wrap gap-3 xl1:mt-10 xl1:gap-4 xl3:mt-12">
               <Link href="/checkout" className={buttonClasses("primary", "lg")}>

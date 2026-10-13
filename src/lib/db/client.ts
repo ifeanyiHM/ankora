@@ -2,7 +2,7 @@ import postgres from "postgres";
 import "server-only";
 
 const connectionString =
-  process.env.DATABASE_URL_UNPOOLED ?? process.env.DATABASE_URL;
+  process.env.DATABASE_URL ?? process.env.DATABASE_URL_UNPOOLED;
 
 if (!connectionString) {
   throw new Error(
