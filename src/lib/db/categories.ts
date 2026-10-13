@@ -20,7 +20,30 @@ interface CategoryRow {
   unit_max: number;
   unit_default: number;
   image: string | null;
+  images: unknown;
   sort_order: number;
+}
+
+function parseCategoryImages(value: unknown): string[] {
+  if (Array.isArray(value)) {
+    return value.filter((item): item is string => typeof item === "string");
+  }
+
+  if (typeof value === "string") {
+    try {
+      const parsed: unknown = JSON.parse(value);
+
+      if (Array.isArray(parsed)) {
+        return parsed.filter(
+          (item): item is string => typeof item === "string",
+        );
+      }
+    } catch {
+      // Invalid JSON; return an empty image list.
+    }
+  }
+
+  return [];
 }
 
 function toCategory(r: CategoryRow): Category {
@@ -46,6 +69,7 @@ function toCategory(r: CategoryRow): Category {
     pattern: r.pattern as FabricPattern,
     unit,
     image: resolveImageUrl(r.image),
+    images: parseCategoryImages(r.images),
   };
 }
 
@@ -93,6 +117,7 @@ export interface CategoryUpdateInput {
   width: string;
   care: string;
   image: string | null;
+  images: string[];
 }
 
 export async function updateCategory(
@@ -111,6 +136,7 @@ export async function updateCategory(
       width = ${input.width},
       care = ${input.care},
       image = ${input.image},
+      images = ${JSON.stringify(input.images)}::jsonb,
       updated_at = CURRENT_TIMESTAMP::text
     WHERE id = ${id}
   `;

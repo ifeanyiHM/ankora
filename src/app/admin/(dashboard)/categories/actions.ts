@@ -26,6 +26,15 @@ export async function updateCategoryAction(
     };
   }
 
+  const images = (input.images ?? []).map((url) => url.trim()).filter(Boolean);
+
+  if (images.some((url) => !/^https?:\/\/\S+$/i.test(url))) {
+    return {
+      ok: false,
+      error: "Enter valid HTTP or HTTPS URLs for category images.",
+    };
+  }
+
   await updateCategory(id, {
     ...input,
     name: input.name.trim(),
@@ -37,10 +46,12 @@ export async function updateCategoryAction(
     care: input.care.trim(),
     uses: input.uses.map((u) => u.trim()).filter(Boolean),
     image: input.image?.trim() || null,
+    images,
   });
 
   revalidatePath("/admin/categories");
   revalidatePath(`/admin/categories/${id}/edit`);
+  revalidatePath("/");
 
   return { ok: true };
 }

@@ -21,7 +21,7 @@ export const sql: DatabaseClient =
   postgres(connectionString, {
     max: 1,
     prepare: false,
-    connect_timeout: 10,
+    connect_timeout: 20,
     idle_timeout: 20,
   });
 

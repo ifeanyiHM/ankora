@@ -17,6 +17,24 @@ interface BaseProps {
 }
 
 /** Shows the photo when one is set, and the generated fabric swatch when not (or if the photo fails to load). */
+
+function isValidImageSrc(src: string | null): src is string {
+  if (!src) return false;
+
+  // Allow local public-folder paths such as /images/fabric.jpg.
+  if (src.startsWith("/") && !src.startsWith("//")) {
+    return true;
+  }
+
+  // Allow valid absolute HTTP(S) URLs.
+  try {
+    const url = new URL(src);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export function SwatchImage({
   src,
   pattern,
@@ -27,19 +45,21 @@ export function SwatchImage({
   className,
 }: BaseProps) {
   const [failedSrc, setFailedSrc] = useState<string | null>(null);
-  const showPhoto = src && failedSrc !== src;
+
+  const validSrc = isValidImageSrc(src) ? src : null;
+  const showPhoto = validSrc !== null && failedSrc !== validSrc;
 
   return (
     <div className={cn("relative overflow-hidden bg-surface", className)}>
       {showPhoto ? (
         <Image
-          src={src}
+          src={validSrc}
           alt={alt}
           fill
           sizes={sizes}
           priority={priority}
           className="object-cover"
-          onError={() => setFailedSrc(src)}
+          onError={() => setFailedSrc(validSrc)}
         />
       ) : (
         <div role="img" aria-label={alt} className="absolute inset-0">

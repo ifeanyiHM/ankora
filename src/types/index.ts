@@ -45,6 +45,7 @@ export interface Category {
   unit: SellingUnit;
   /** Resolved, ready-to-render image URL, or null to fall back to the generated swatch */
   image: string | null;
+  images: string[];
 }
 
 export type ProductBadge = "Bestseller" | "New" | "Handwoven";

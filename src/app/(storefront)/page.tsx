@@ -125,12 +125,6 @@ export default async function HomePage() {
     if (list) list.push(p);
     else productsByCategory.set(p.categorySlug, [p]);
   }
-  const randomProductFor = (slug: string): Product | undefined => {
-    const list = productsByCategory.get(slug);
-    return list?.length
-      ? list[Math.floor(Math.random() * list.length)]
-      : undefined;
-  };
 
   const loomProducts = (
     await Promise.all(
@@ -197,15 +191,26 @@ export default async function HomePage() {
           />
           <div className="grid grid-cols-2 gap-x-3 gap-y-9 sm:grid-cols-3 sm:gap-x-4 lg:grid-cols-4 xl1:grid-cols-7 xl1:gap-x-5 xl1:gap-y-12 xl2:gap-y-14 xl3:gap-x-6 xl3:gap-y-16 xl4:gap-x-8 xl4:gap-y-20">
             {categories.map((c) => {
-              const sample = randomProductFor(c.slug);
+              const imagePool = Array.from(
+                new Set(
+                  [c.image, ...(c.images ?? [])].filter(
+                    (url): url is string =>
+                      typeof url === "string" && url.trim() !== "",
+                  ),
+                ),
+              );
+
+              const image =
+                imagePool.length > 0
+                  ? imagePool[Math.floor(Math.random() * imagePool.length)]
+                  : null;
+
               return (
                 <CategoryTile
                   key={c.slug}
                   category={c}
                   count={counts[c.slug] ?? 0}
-                  image={sample?.images[0] ?? null}
-                  pattern={sample?.pattern}
-                  sampleColors={sample?.colors.map((x) => x.hex)}
+                  image={image}
                 />
               );
             })}
