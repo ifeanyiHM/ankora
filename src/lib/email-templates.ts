@@ -1,6 +1,10 @@
-import { ORDER_STATUS_LABELS, type OrderRecord, type OrderStatus } from "@/types";
-import { formatNaira } from "@/lib/format";
 import { SITE } from "@/config/site";
+import { formatNaira } from "@/lib/format";
+import {
+  ORDER_STATUS_LABELS,
+  type OrderRecord,
+  type OrderStatus,
+} from "@/types";
 
 const shell = (title: string, body: string) => `
 <div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;color:#0a0a0a">
@@ -28,7 +32,10 @@ const itemsTable = (order: OrderRecord) => `
     <tr><td style="padding:8px 0;font-weight:700">Total</td><td style="padding:8px 0;text-align:right;font-weight:700">${formatNaira(order.total)}</td></tr>
   </table>`;
 
-const trackLink = (order: OrderRecord) => `${SITE.url}/track-order?order=${encodeURIComponent(order.orderNumber)}`;
+const trackLink = (order: OrderRecord) =>
+  `${SITE.url.replace(/\/+$/, "")}/track-order?order=${encodeURIComponent(
+    order.orderNumber,
+  )}`;
 
 export function orderConfirmationEmail(order: OrderRecord) {
   const html = shell(
@@ -39,7 +46,11 @@ export function orderConfirmationEmail(order: OrderRecord) {
      <p>Delivering to: ${order.address}, ${order.city}, ${order.state}</p>
      <p><a href="${trackLink(order)}" style="color:#163D2A;font-weight:700">Track your order</a></p>`,
   );
-  return { subject: `Ankora order ${order.orderNumber}: payment received`, html, text: `Order ${order.orderNumber} paid. Total ${formatNaira(order.total)}. Track: ${trackLink(order)}` };
+  return {
+    subject: `Ankora order ${order.orderNumber}: payment received`,
+    html,
+    text: `Order ${order.orderNumber} paid. Total ${formatNaira(order.total)}. Track: ${trackLink(order)}`,
+  };
 }
 
 export function orderStatusEmail(order: OrderRecord, status: OrderStatus) {
@@ -54,5 +65,9 @@ export function orderStatusEmail(order: OrderRecord, status: OrderStatus) {
      ${extra}
      <p><a href="${trackLink(order)}" style="color:#163D2A;font-weight:700">Track your order</a></p>`,
   );
-  return { subject: `Ankora order ${order.orderNumber}: ${label}`, html, text: `Order ${order.orderNumber} is now ${label}. Track: ${trackLink(order)}` };
+  return {
+    subject: `Ankora order ${order.orderNumber}: ${label}`,
+    html,
+    text: `Order ${order.orderNumber} is now ${label}. Track: ${trackLink(order)}`,
+  };
 }

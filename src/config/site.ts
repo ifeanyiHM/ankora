@@ -5,7 +5,7 @@ export const SITE = {
   description:
     "Shop Aso Oke, Adire, Akwete, Ankara, Lace, Kente and more. Traditional Nigerian and African fabrics by the yard, piece or set, delivered across Nigeria.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  email: "hello@ankora.ng",
+  email: "ankora60@gmail.com",
   currency: "NGN" as const,
   /** Orders with a subtotal at or above this get free delivery (₦) */
   freeDeliveryThreshold: 150_000,
