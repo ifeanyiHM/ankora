@@ -3,27 +3,32 @@
 @theme {
   --font-sans: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
 
-  /* Large-desktop breakpoints: used for container width, grids, type and spacing */
+  /* All breakpoints in px. Tailwind orders breakpoints by unit first, so mixing the built-in rem ones
+     with px ones puts xl1–xl4 BEFORE md/lg/xl and the smaller breakpoint wins on big screens. */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
   --breakpoint-xl1: 1440px;
   --breakpoint-xl2: 1536px;
   --breakpoint-xl3: 1680px;
   --breakpoint-xl4: 1920px;
 
   /* Brand */
-  --color-green: #163D2A;
-  --color-green-dark: #0D2B1D;
-  --color-green-light: #28563F;
-  --color-green-tint: #E8EFEA;
+  --color-green: #163d2a;
+  --color-green-dark: #0d2b1d;
+  --color-green-light: #28563f;
+  --color-green-tint: #e8efea;
 
   /* Ankora additions */
   --color-gold: #d4a017;
   --color-gold-dark: #8a6508;
   --color-gold-tint: #f8efd3;
 
-  /* Adire indigo: the deep background of the home page's occasions carousel. Indigo-dyed cloth
-     is one of the fabric families Ankora sells, and gold + brand green pick up the rest of the palette. */
-  --color-adire: #101a44;
-  --color-adire-deep: #0a1233;
+  /* Adire: deep textile-inspired greens that complement Ankora's brand */
+  --color-adire: #214532;
+  --color-adire-deep: #102d20;
 
   --color-ink: #0a0a0a;
   --color-ink-soft: #1a1a1a;
@@ -59,7 +64,7 @@ html {
 }
 @media (min-width: 1920px) {
   html {
-    font-size: 18.5px;
+    font-size: 19px;
   }
 }
 
@@ -212,4 +217,35 @@ body {
       rgb(0 135 81 / 0.2),
       transparent 70%
     ); */
+}
+
+/* Ankora responsive container widths */
+.ankora-container {
+  width: 100%;
+  max-width: 74rem;
+  /* margin-inline: auto; */
+}
+
+@media (min-width: 1440px) {
+  .ankora-container {
+    max-width: 95%;
+  }
+}
+
+@media (min-width: 1536px) {
+  .ankora-container {
+    max-width: 95%;
+  }
+}
+
+@media (min-width: 1680px) {
+  .ankora-container {
+    max-width: 94%;
+  }
+}
+
+@media (min-width: 1920px) {
+  .ankora-container {
+    max-width: 91%;
+  }
 }

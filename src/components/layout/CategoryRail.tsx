@@ -45,7 +45,7 @@ export function CategoryRail({ categories }: { categories: Category[] }) {
     });
 
   const item =
-    "shrink-0 whitespace-nowrap rounded-full px-3 py-1.5 text-sm transition-colors xl1:px-3.5 xl1:py-2 xl1:text-[0.95rem] xl2:px-4 xl3:px-[1.125rem] xl3:text-base xl4:px-5";
+    "shrink-0 whitespace-nowrap rounded-full px-3 py-1.5 text-sm transition-colors xl1:px-3.5 xl1:py-2 xl1:text-[0.95rem] xl2:px-4 xl3:px-[1.125rem] xl2:text-[1.02rem] xl4:text-[1.07rem] xl4:px-5";
 
   return (
     <nav
@@ -92,7 +92,7 @@ export function CategoryRail({ categories }: { categories: Category[] }) {
               );
             })}
           </ul>
-          <div className="flex shrink-0 items-center gap-1 xl2:hidden">
+          <div className="flex shrink-0 items-center gap-1">
             <button
               type="button"
               onClick={() => scrollBy(-1)}
@@ -117,61 +117,3 @@ export function CategoryRail({ categories }: { categories: Category[] }) {
     </nav>
   );
 }
-
-// "use client";
-
-// import { cn } from "@/lib/cn";
-// import type { Category } from "@/types";
-// import Link from "next/link";
-// import { usePathname } from "next/navigation";
-
-// /** Horizontal list of the 14 fabric families, shown under the header on desktop. */
-// export function CategoryRail({ categories }: { categories: Category[] }) {
-//   const pathname = usePathname();
-//   const item =
-//     "shrink-0 whitespace-nowrap rounded-full px-3 py-1.5 text-sm transition-colors xl1:px-3.5 xl1:py-2 xl1:text-[0.95rem] xl2:px-4 xl3:px-[1.125rem] xl3:text-base xl4:px-5";
-//   return (
-//     <nav
-//       aria-label="Fabric categories"
-//       className="hidden border-t border-line lg:block"
-//     >
-//       <div className="mx-auto w-full px-10 xl:max-w-296 xl1:max-w-328 xl1:px-12 xl2:max-w-352 xl2:px-14 xl3:max-w-368 xl3:px-16 xl4:max-w-[100rem] xl4:px-20">
-//         <ul className="no-scrollbar -mx-3 flex items-center gap-0.5 overflow-x-auto py-2 xl1:py-2.5 xl2:justify-between xl2:gap-0 xl3:py-3">
-//           <li>
-//             <Link
-//               href="/shop"
-//               className={cn(
-//                 item,
-//                 "font-semibold",
-//                 pathname === "/shop"
-//                   ? "bg-ink text-white"
-//                   : "hover:bg-surface-2",
-//               )}
-//             >
-//               All fabrics
-//             </Link>
-//           </li>
-//           {categories.map((c) => {
-//             const active = pathname === `/category/${c.slug}`;
-//             return (
-//               <li key={c.slug}>
-//                 <Link
-//                   href={`/category/${c.slug}`}
-//                   aria-current={active ? "page" : undefined}
-//                   className={cn(
-//                     item,
-//                     active
-//                       ? "bg-green-tint font-semibold text-green-dark"
-//                       : "text-ink-soft hover:bg-surface-2",
-//                   )}
-//                 >
-//                   {c.name}
-//                 </Link>
-//               </li>
-//             );
-//           })}
-//         </ul>
-//       </div>
-//     </nav>
-//   );
-// }

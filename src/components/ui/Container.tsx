@@ -1,4 +1,4 @@
-import { cn } from "@/lib/cn";
+import { cn } from "../../lib/cn";
 
 /** Page width. Grows at every large-desktop breakpoint so wide screens stay balanced, never stretched. */
 export function Container({

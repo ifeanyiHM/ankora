@@ -106,14 +106,14 @@ export default async function CategoryPage({
               images={carouselImages}
               alt={`${category.name} fabric`}
               sizes="(min-width:1024px) 40vw, 100vw"
-              className="aspect-5/4 rounded-sm md:aspect-4/5 xl1:aspect-5/4"
+              className="aspect-5/4 rounded-sm md:aspect-4/5"
             />
           ) : (
             <CategoryImage
               category={category}
               priority
               sizes="(min-width:1024px) 40vw, 100vw"
-              className="aspect-5/4 rounded-sm md:aspect-4/5 xl1:aspect-5/4"
+              className="aspect-5/4 rounded-sm md:aspect-4/5"
             />
           )}
         </Container>

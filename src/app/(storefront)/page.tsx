@@ -141,7 +141,7 @@ export default async function HomePage() {
       <section className="pb-14 pt-8 md:pt-12 xl1:pb-24 xl1:pt-16 xl2:pb-28 xl3:pt-20 xl3:pb-32 xl4:pt-24 xl4:pb-40">
         <Container className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14 xl1:gap-20 xl2:gap-24 xl3:gap-28 xl4:gap-32">
           <div>
-            <h1 className="text-[2.6rem] font-bold leading-[1.02] tracking-tight sm:text-6xl xl:text-[4.2rem] xl1:text-[4.8rem] xl2:text-[5.2rem] xl3:text-[5.4rem] xl4:text-[6.2rem]">
+            <h1 className="text-[2.6rem] font-bold leading-[1.02] tracking-tight sm:text-6xl xl:text-[4.2rem] xl1:text-[4.6rem] xl2:text-[4.8rem] xl3:text-[4.9rem] xl4:text-[5.2rem]">
               Nigerian fabrics, cut by the yard
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted xl1:mt-8 xl1:max-w-2xl xl1:text-xl xl2:max-w-2xl xl3:mt-10 xl3:text-[1.35rem] xl4:max-w-184 xl4:text-2xl">
@@ -171,8 +171,10 @@ export default async function HomePage() {
               key={f.title}
               className={`px-0 py-6 pr-4 xl1:py-8 xl2:py-10 xl3:py-12 xl4:py-14 lg:px-6 lg:first:pl-0 ${i > 0 ? "lg:border-l lg:border-line" : ""} ${i % 2 === 1 ? "border-l border-line pl-4 lg:pl-6" : ""}`}
             >
-              <p className="font-semibold xl1:text-lg xl3:text-xl">{f.title}</p>
-              <p className="mt-1 text-sm text-muted xl1:text-base xl3:mt-2 xl3:text-[1.05rem]">
+              <p className="font-semibold xl1:text-lg xl3:text-xl xl4:text-[1.3rem]">
+                {f.title}
+              </p>
+              <p className="mt-1 text-sm text-muted xl1:text-base xl3:mt-2 xl3:text-[1.05rem] xl4:text-[1.2rem]">
                 {f.text}
               </p>
             </div>
@@ -189,7 +191,7 @@ export default async function HomePage() {
             title="Shop by fabric"
             description="Each family has its own page with every variety we stock."
           />
-          <div className="grid grid-cols-2 gap-x-3 gap-y-9 sm:grid-cols-3 sm:gap-x-4 lg:grid-cols-4 xl1:grid-cols-7 xl1:gap-x-5 xl1:gap-y-12 xl2:gap-y-14 xl3:gap-x-6 xl3:gap-y-16 xl4:gap-x-8 xl4:gap-y-20">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-9 sm:grid-cols-3 sm:gap-x-4 lg:grid-cols-4 xl1:gap-x-5 xl1:gap-y-12 xl2:gap-y-14 xl3:gap-x-6 xl3:gap-y-16 xl4:gap-y-20">
             {categories.map((c) => {
               const imagePool = Array.from(
                 new Set(

@@ -107,7 +107,7 @@ function OccasionCard({
       </div>
 
       <div className="relative z-10 p-4 xl1:p-5 xl3:p-6 xl4:p-8">
-        <h3 className="text-2xl font-bold leading-tight tracking-tight xl1:text-[1.7rem] xl3:text-4xl xl4:text-[2.6rem]">
+        <h3 className="text-2xl font-bold leading-tight tracking-tight xl1:text-[1.7rem] xl3:text-3xl xl4:text-[2rem]">
           {occasion.title}
         </h3>
         {/* <p className="mt-2 line-clamp-3 max-w-md text-[0.95rem] leading-relaxed text-white/80 xl1:mt-3 xl1:text-base xl3:text-lg xl4:text-xl">
@@ -222,7 +222,7 @@ export function OccasionsCarousel({ occasions }: { occasions: Occasion[] }) {
       aria-label="Shop by occasion"
       className="bg-occasions mt-20 overflow-hidden text-white xl1:mt-28 xl2:mt-32 xl3:mt-36 xl4:mt-44"
     >
-      <Container className="py-14 xl1:py-20 xl2:py-24 xl3:py-28 xl4:py-32">
+      <Container className="py-16 lg:py-28 xl2:py-32 xl3:py-40 xl4:py-48">
         <div className="flex flex-wrap items-end justify-between gap-6 xl3:gap-8">
           <div>
             <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-white xl1:text-sm xl3:text-base">
@@ -273,7 +273,7 @@ export function OccasionsCarousel({ occasions }: { occasions: Occasion[] }) {
             {occasions.map((o, i) => (
               <li
                 key={i}
-                className="w-[82%] shrink-0 snap-start sm:w-[46%] lg:w-[34%] xl2:w-[31%] xl3:w-[28%]"
+                className="w-[82%] shrink-0 snap-start sm:w-[46%] lg:w-[34%] xl1:w-[33.1%] xl2:w-[32.95%] xl3:w-[32.85%] xl4:w-[32.95%]"
               >
                 <OccasionCard
                   occasion={o}

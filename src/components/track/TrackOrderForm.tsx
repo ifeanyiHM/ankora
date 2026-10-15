@@ -107,7 +107,7 @@ export function TrackOrderForm({
   return (
     <div className="grid gap-10 lg:grid-cols-[24rem_1fr] xl1:grid-cols-[28rem_1fr] xl1:gap-16 xl2:gap-20 xl3:grid-cols-[32rem_1fr] xl3:gap-24 xl4:gap-28">
       <form onSubmit={onSubmit} className="lg:sticky lg:top-44 lg:self-start">
-        <h1 className="mb-3 text-3xl font-bold tracking-tight md:text-5xl xl1:mb-4 xl1:text-6xl xl3:text-7xl xl4:text-[5rem]">
+        <h1 className="mb-3 text-3xl font-bold tracking-tight md:text-5xl xl1:mb-4 xl1:text-[3.5rem] xl3:text-6xl xl4:text-[4rem]">
           Track your order
         </h1>
         <p className="mb-10 max-w-xl text-muted xl1:mb-12 xl1:max-w-2xl xl1:text-lg xl3:text-xl">
