@@ -105,7 +105,7 @@ export function TrackOrderForm({
   const order = result?.order;
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[24rem_1fr] xl1:grid-cols-[28rem_1fr] xl1:gap-16 xl2:gap-20 xl3:grid-cols-[32rem_1fr] xl3:gap-24 xl4:gap-28">
+    <div className="grid grid-cols-1 gap-10 lg:grid-cols-[24rem_minmax(0,1fr)] xl1:grid-cols-[28rem_minmax(0,1fr)] xl1:gap-16 xl2:gap-20 xl3:grid-cols-[32rem_minmax(0,1fr)] xl3:gap-24 xl4:gap-28">
       <form onSubmit={onSubmit} className="lg:sticky lg:top-44 lg:self-start">
         <h1 className="mb-3 text-3xl font-bold tracking-tight md:text-5xl xl1:mb-4 xl1:text-[3.5rem] xl3:text-6xl xl4:text-[4rem]">
           Track your order
@@ -160,7 +160,7 @@ export function TrackOrderForm({
         </div>
       </form>
 
-      <div>
+      <div className="min-w-0">
         {/* {!result && (
           <p className="text-muted xl1:text-lg xl3:text-xl">
             Enter your order number and the email or phone you used at checkout
@@ -184,25 +184,29 @@ export function TrackOrderForm({
                   })}
                 </p>
               </div>
-              <div className="text-right">
-                <p className="text-sm text-muted xl1:text-base">
-                  Payment status
-                </p>
-                <p
-                  className={`text-lg font-bold xl1:text-xl xl3:text-2xl ${order.paymentStatus === "PAID" ? "text-green-dark" : order.paymentStatus === "FAILED" ? "text-danger" : "text-gold-dark"}`}
-                >
-                  {order.paymentStatus === "PAID"
-                    ? "Paid"
-                    : order.paymentStatus === "FAILED"
-                      ? "Failed"
-                      : "Pending"}
-                </p>
-                <p className="mt-1 text-sm text-muted xl1:text-base">
-                  Order status
-                </p>
-                <p className="font-semibold xl1:text-lg xl3:text-xl">
-                  {ORDER_STATUS_LABELS[order.status]}
-                </p>
+              <div className="w-full md:w-fit flex justify-between md:block md:text-right">
+                <div>
+                  <p className="text-sm text-muted xl1:text-base">
+                    Payment status
+                  </p>
+                  <p
+                    className={`text-lg font-bold xl1:text-xl xl3:text-2xl ${order.paymentStatus === "PAID" ? "text-green-dark" : order.paymentStatus === "FAILED" ? "text-danger" : "text-gold-dark"}`}
+                  >
+                    {order.paymentStatus === "PAID"
+                      ? "Paid"
+                      : order.paymentStatus === "FAILED"
+                        ? "Failed"
+                        : "Pending"}
+                  </p>
+                </div>
+                <div>
+                  <p className="md:mt-1 text-sm text-muted xl1:text-base">
+                    Order status
+                  </p>
+                  <p className="font-semibold xl1:text-lg xl3:text-xl">
+                    {ORDER_STATUS_LABELS[order.status]}
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -259,10 +263,10 @@ export function TrackOrderForm({
             </h2>
             <div className="grid gap-1 text-[0.95rem] xl1:gap-1.5 xl1:text-base xl3:text-lg">
               <p>{order.fullName}</p>
-              <p className="text-muted">
+              <p className="wrap-break-word text-muted">
                 {order.address}, {order.city}, {order.state}
               </p>
-              <p className="text-muted">
+              <p className="wrap-break-word text-muted">
                 {order.phone} · {order.email}
               </p>
             </div>
