@@ -71,12 +71,26 @@ export async function Footer() {
         </div>
       </Container>
       <div className="border-t border-white/10">
-        <Container className="flex flex-col gap-1 py-6 text-sm text-white/50 sm:flex-row sm:justify-between xl1:py-7 xl2:text-lg xl3:py-8">
+        <Container className="flex flex-col gap-2 py-6 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between xl1:py-7 xl2:text-lg xl3:py-8">
           <p>
             © {new Date().getFullYear()} Ankora. All prices are in Nigerian
             Naira (₦).
           </p>
-          <p>Made in Nigeria</p>
+
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <p>Made in Nigeria</p>
+            <p>
+              Designed and created by{" "}
+              <a
+                href="https://ihemestudio.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 transition-colors hover:text-white"
+              >
+                Iheme Studio
+              </a>
+            </p>
+          </div>
         </Container>
       </div>
     </footer>

@@ -3,7 +3,7 @@
 import { unitLabel } from "@/lib/catalog-utils";
 import { useCart } from "@/store/cart";
 import type { CartItem } from "@/types";
-import { Plus } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 
 /**
  * Round quick-add button on product cards.
@@ -30,11 +30,12 @@ export function QuickAdd({
       className="
         group/quick-add absolute bottom-2.5 right-2.5
         grid size-11 place-items-center rounded-full
-        border border-white/20 bg-green text-white
-        shadow-[0_3px_12px_rgba(22,61,42,0.22)]
+        border border-white/60 bg-white/60 text-green
+        shadow-[0_4px_16px_rgba(22,61,42,0.14)]
+        backdrop-blur-md backdrop-saturate-150
         transition-all duration-200 ease-out
-        hover:scale-105 hover:bg-green-dark
-        hover:shadow-[0_5px_16px_rgba(22,61,42,0.3)]
+        hover:scale-105 hover:border-green hover:bg-green hover:text-white
+        hover:shadow-[0_6px_20px_rgba(22,61,42,0.28)]
         active:scale-95
         focus-visible:opacity-100
         focus-visible:outline-none focus-visible:ring-2
@@ -44,8 +45,8 @@ export function QuickAdd({
         xl3:size-12
       "
     >
-      <Plus
-        className="size-5 transition-transform duration-200 group-hover/quick-add:rotate-90 xl3:size-[1.35rem]"
+      <ShoppingCart
+        className="size-[1.1rem] transition-transform duration-200 group-hover/quick-add:-translate-y-px group-hover/quick-add:scale-110 xl3:size-5"
         strokeWidth={1.8}
         aria-hidden="true"
       />
