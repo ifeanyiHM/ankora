@@ -11,6 +11,7 @@ import { ORDER_STATUS_LABELS } from "@/types";
 import { Search } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { cn } from "../../lib/cn";
 
 const STORAGE_KEY = "ankora-track-order";
 
@@ -161,15 +162,17 @@ export function TrackOrderForm({
         </div>
       </form>
 
-      <div className="min-w-0">
-        <Image
-          src="/ankora-bag.png"
-          alt="Ankora"
-          width={703}
-          height={653}
-          className="h-auto max-h-[60dvh] w-full object-contain"
-          priority
-        />
+      <div className={cn("min-w-0", !order && "warp")}>
+        {!order && (
+          <Image
+            src="/ankora-bag.png"
+            alt="Ankora"
+            width={703}
+            height={653}
+            className="h-auto max-h-[60dvh] w-full object-contain"
+            priority
+          />
+        )}
         {order && (
           <div>
             <div className="flex flex-wrap items-start justify-between gap-4 border-b border-line pb-6 xl1:pb-8 xl3:pb-10">

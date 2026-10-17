@@ -53,7 +53,7 @@ export default function DeliveryPage() {
         </div>
 
         <div className="relative lg:hidden xl:block">
-          <div className="xl:sticky top-1/2 xl:translate-y-[-30%] flex xl:h-[60dvh] items-center justify-center">
+          <div className="warp xl:sticky top-1/2 xl:translate-y-[-30%] flex xl:h-[60dvh] items-center justify-center">
             <Image
               src="/ankora-cart.png"
               alt="Ankora"

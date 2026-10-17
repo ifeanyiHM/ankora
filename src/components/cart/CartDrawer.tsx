@@ -7,7 +7,7 @@ import { formatNaira } from "@/lib/format";
 import { useMounted } from "@/lib/use-mounted";
 import { useCart } from "@/store/cart";
 import * as Dialog from "@radix-ui/react-dialog";
-import { ShoppingBag, X } from "lucide-react";
+import { ShoppingCart, X } from "lucide-react";
 import Link from "next/link";
 import { CartLineItem } from "./CartLineItem";
 
@@ -40,9 +40,10 @@ export function CartDrawer() {
 
           {lines.length === 0 ? (
             <div className="flex flex-1 flex-col items-center justify-center gap-4 px-8 text-center">
-              <ShoppingBag
+              <ShoppingCart
                 className="size-10 xl2:size-12 xl3:size-14 xl4:size-16 text-muted"
-                strokeWidth={1.5}
+                strokeWidth={1}
+                aria-hidden="true"
               />
               <p className="text-lg xl1:text-xl xl2:text-[1.35rem] xl3:text-2xl font-semibold">
                 Your cart is empty
