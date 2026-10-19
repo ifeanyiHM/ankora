@@ -60,13 +60,16 @@ export default async function ShopPage({
     "shrink-0 whitespace-nowrap rounded-full px-3.5 py-2 text-sm transition-colors lg:rounded-md lg:px-3 lg:py-2 xl1:text-[0.95rem] xl3:px-3.5 xl3:py-2.5 xl3:text-base";
 
   return (
-    <Container className="py-8 md:py-12 xl1:py-16 xl2:py-18 xl3:py-20 xl4:py-24">
-      <div className="mb-8 flex flex-wrap items-end justify-between gap-4 lg:border-t border-ink pt-5 xl1:mb-10 xl1:pt-6 xl3:mb-12 xl3:pt-7 xl4:mb-14">
+    <Container className="py-6 md:py-12 xl1:py-16 xl2:py-18 xl3:py-20 xl4:py-24">
+      <div className="mb-8 flex flex-wrap items-baseline lg:items-end justify-between gap-4 lg:border-t border-ink pt-5 xl1:mb-10 xl1:pt-6 xl3:mb-12 xl3:pt-7 xl4:mb-14">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight md:text-5xl xl1:text-6xl xl3:text-7xl xl4:text-[5rem]">
+          <h1 className="md:hidden text-3xl font-bold tracking-tight md:text-5xl xl1:text-6xl xl3:text-7xl xl4:text-[5rem]">
+            {q ? `Results for “${q}”` : active ? active.name : "Fabrics"}
+          </h1>
+          <h1 className="hidden md:block text-3xl font-bold tracking-tight md:text-5xl xl1:text-6xl xl3:text-7xl xl4:text-[5rem]">
             {q ? `Results for “${q}”` : active ? active.name : "All fabrics"}
           </h1>
-          <p className="mt-2 text-muted xl1:text-lg xl3:mt-3 xl3:text-xl">
+          <p className="lg:mt-2 text-muted xl1:text-lg xl3:mt-3 xl3:text-xl">
             {products.length} {products.length === 1 ? "variety" : "varieties"}
           </p>
         </div>
@@ -104,7 +107,7 @@ export default async function ShopPage({
                     : "bg-surface lg:bg-transparent lg:hover:bg-surface-2",
                 )}
               >
-                All fabrics
+                All Fabrics
               </Link>
             </li>
 

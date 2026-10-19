@@ -69,7 +69,7 @@ export function CategoryRail({ categories }: { categories: Category[] }) {
                     : "hover:bg-surface-2",
                 )}
               >
-                All fabrics
+                All Fabrics
               </Link>
             </li>
             {categories.map((c) => {

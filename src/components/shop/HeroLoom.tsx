@@ -63,7 +63,7 @@ export function HeroLoom({ products }: { products: Product[] }) {
                 className="size-full transition-transform duration-700 group-hover:scale-[1.04]"
               />
             )}
-            <span className="absolute inset-x-1.5 bottom-1.5 truncate rounded-full bg-white px-2 py-1 text-center text-[0.7rem] font-semibold sm:text-xs xl1:inset-x-2.5 xl1:bottom-2.5 xl1:py-1.5 xl1:text-sm xl3:inset-x-3 xl3:bottom-3 xl3:px-3 xl3:py-2 xl3:text-base xl4:text-lg">
+            <span className="hidden md:inline absolute inset-x-1.5 bottom-1.5 truncate rounded-full bg-white px-2 py-1 text-center text-[0.7rem] font-semibold sm:text-xs xl1:inset-x-2.5 xl1:bottom-2.5 xl1:py-1.5 xl1:text-sm xl3:inset-x-3 xl3:bottom-3 xl3:px-3 xl3:py-2 xl3:text-base xl4:text-lg">
               {product.categoryName}
             </span>
           </Link>

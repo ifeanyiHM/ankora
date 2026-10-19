@@ -59,7 +59,7 @@ export function AboutMosaic({ tiles }: { tiles: MosaicTile[] }) {
         aria-hidden="true"
         className="absolute inset-0 translate-x-3 translate-y-3 rounded-md xl1:translate-x-4 xl1:translate-y-4 xl3:translate-x-5 xl3:translate-y-5"
       />
-      <div className="relative grid aspect-5/6 grid-cols-6 grid-rows-6 gap-2 xl1:gap-2.5 xl3:gap-3">
+      <div className="relative grid aspect-5/6 grid-cols-6 grid-rows-6 gap-1 lg:gap-2 xl1:gap-2.5 xl3:gap-3">
         {large && (
           <Tile
             tile={large}
@@ -112,7 +112,7 @@ export function AboutMosaic({ tiles }: { tiles: MosaicTile[] }) {
               strokeLinecap="round"
             />
           </svg>
-          <div className="relative aspect-square overflow-hidden rounded-full ring-6 xl1:ring-7 xl3:ring-10 ring-white">
+          <div className="relative aspect-square overflow-hidden rounded-full ring-4 lg:ring-6 xl1:ring-7 xl3:ring-10 ring-white">
             <SwatchImage
               src={medallion.image}
               pattern={medallion.pattern}

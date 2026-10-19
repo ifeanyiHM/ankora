@@ -138,19 +138,21 @@ export function SortSelect({ value }: { value: SortKey }) {
           }
         }}
         className={cn(
-          "group flex h-11 min-w-46 items-center gap-2.5 rounded-full border bg-white px-3.5 text-left shadow-[0_2px_8px_rgba(22,61,42,0.04)] transition-all duration-200 sm:min-w-50 xl1:h-12 xl1:min-w-56 xl1:px-4 xl3:h-13 xl3:min-w-60",
+          "group flex h-11 min-w-46 items-center gap-2.5 rounded-full border bg-white px-2.5 lg:px-3.5 text-left shadow-[0_2px_8px_rgba(22,61,42,0.04)] transition-all duration-200 sm:min-w-50 xl1:h-12 xl1:min-w-56 xl1:px-4 xl3:h-13 xl3:min-w-60",
           open
             ? "border-green ring-4 ring-[#163D2A]/10"
             : "border-green/20 hover:border-green/50 hover:shadow-[0_4px_14px_rgba(22,61,42,0.08)]",
         )}
       >
-        <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-green-tint text-green xl1:size-8">
-          <SelectedIcon className="size-3.5 xl1:size-4" />
-        </span>
+        <div className="flex flex-1 min-w-0 items-center lg:gap-0.5">
+          <span className="flex size-7 shrink-0 items-center justify-center text-green xl1:size-8">
+            <SelectedIcon className="size-3.5 xl1:size-4" />
+          </span>
 
-        <span className="min-w-0 flex-1 truncate text-sm font-semibold text-green xl1:text-base">
-          {selectedOption.label}
-        </span>
+          <span className="min-w-0 truncate text-sm font-semibold text-green xl1:text-base">
+            {selectedOption.label}
+          </span>
+        </div>
 
         <ChevronDown
           className={cn(
@@ -192,33 +194,31 @@ export function SortSelect({ value }: { value: SortKey }) {
                 onClick={() => selectOption(option.value)}
                 onKeyDown={(event) => handleOptionKeyDown(event, index)}
                 className={cn(
-                  "flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition-colors duration-150",
-                  selected
-                    ? "bg-green-tint text-green"
-                    : "text-[#292F2A] hover:bg-[#F5F7F5]",
+                  "flex w-full items-center gap-0.5 rounded-xl p-1 xl3:p-2 text-left transition-colors duration-150  hover:bg-[#F5F7F5]",
+                  selected ? " text-green" : "text-[#292F2A]",
                 )}
               >
-                <span
-                  className={cn(
-                    "flex size-9 shrink-0 items-center justify-center rounded-xl transition-colors",
-                    selected
-                      ? "bg-green text-white"
-                      : "bg-[#F3F5F3] text-green/65",
-                  )}
-                >
-                  <OptionIcon className="size-4" />
-                </span>
-
-                <span className="min-w-0 flex-1">
+                <div className="flex flex-1 min-w-0 items-center lg:gap-0.5">
                   <span
                     className={cn(
-                      "block text-sm",
-                      selected ? "font-semibold" : "font-medium",
+                      "flex size-9 shrink-0 items-center justify-center rounded-xl transition-colors",
+                      selected ? "text-green" : "text-green/65",
                     )}
                   >
-                    {option.label}
+                    <OptionIcon className="size-4" />
                   </span>
-                </span>
+
+                  <span className="min-w-0">
+                    <span
+                      className={cn(
+                        "block text-sm",
+                        selected ? "font-semibold" : "font-medium",
+                      )}
+                    >
+                      {option.label}
+                    </span>
+                  </span>
+                </div>
 
                 {selected && <Check className="size-4 shrink-0 text-green" />}
               </button>

@@ -4,7 +4,7 @@ import { formatNaira } from "@/lib/format";
 import type { Product } from "@/types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { QuickAdd } from "./QuickAdd";
 import { StockBadge } from "./StockBadge";
 import { ProductImage } from "./SwatchImage";
@@ -89,6 +89,7 @@ export function ProductGrid({
 }) {
   const [isDesktop, setIsDesktop] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const gridTopRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 768px)");
@@ -142,21 +143,22 @@ export function ProductGrid({
 
   const goToPage = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({
-      top: 0,
+    gridTopRef.current?.scrollIntoView({
       behavior: "smooth",
+      block: "start",
     });
   };
 
   return (
-    <div className="min-w-0">
+    <div ref={gridTopRef} className="min-w-0 scroll-mt-24 lg:scroll-mt-44">
       <div aria-live="polite" aria-atomic="true" className="sr-only">
         Page {currentPage} of {Math.max(1, pageCount)}. Showing{" "}
         {visibleProducts.length} products.
       </div>
 
       <div
-        className={`grid gap-x-3 gap-y-8 sm:gap-x-4 md:gap-x-5 xl1:gap-x-6 xl1:gap-y-12 xl2:gap-y-14 xl3:gap-x-7 xl3:gap-y-16 xl4:gap-y-20 ${cols}`}
+        // className={`grid gap-x-3 gap-y-8 sm:gap-x-4 md:gap-x-5 xl1:gap-x-6 xl1:gap-y-12 xl2:gap-y-14 xl3:gap-x-7 xl3:gap-y-16 xl4:gap-y-20 ${cols}`}
+        className={`grid gap-x-3 gap-y-9 sm:gap-x-4 xl1:gap-x-5 xl1:gap-y-12 xl2:gap-y-14 xl3:gap-x-6 xl3:gap-y-16 xl4:gap-y-20 ${cols}`}
       >
         {visibleProducts.map((product, index) => (
           <ProductCard
@@ -211,7 +213,7 @@ export function ProductGrid({
         </nav>
       )}
 
-      {products.length > 0 && (
+      {pageCount > 1 && (
         <p className="mt-4 text-center text-sm text-muted">
           Showing {startIndex + 1}–{startIndex + visibleProducts.length} of{" "}
           {products.length} products

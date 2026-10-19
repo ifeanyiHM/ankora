@@ -96,19 +96,19 @@ const OCCASIONS: Occasion[] = [
 const FACTS = [
   {
     title: "14 fabric families",
-    text: "From handwoven aso oke to printed ankara.",
+    text: "From aso oke to vibrant ankara prints.",
   },
   {
     title: "Sold your way",
-    text: "By the yard, the piece or the set, depending on the cloth.",
+    text: "By the yard, the piece or the set.",
   },
   {
     title: "Pay with Paystack",
-    text: "Cards, bank transfer and USSD, in Naira.",
+    text: "Cards, transfers and USSD in Naira.",
   },
   {
-    title: "Delivered across Nigeria",
-    text: "Delivery fee is shown before you pay.",
+    title: "Delivered to You",
+    text: "See delivery fees before you pay.",
   },
 ];
 
