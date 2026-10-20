@@ -18,11 +18,68 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const product = await getProduct((await params).slug);
+
   if (!product) return {};
+
+  const productUrl = `${SITE.url}/product/${product.slug}`;
+
+  // Use the first product image for social previews.
+  const productImage = product.images[0] ?? null;
+
+  // Product-specific SEO and social preview description.
+  const description =
+    `${product.name} — ${product.categoryName} fabric. ` +
+    `${formatNaira(product.price)} per ${product.unit.name}. ` +
+    product.description;
+
+  // Keep the social description concise.
+  const socialDescription =
+    description.length > 157
+      ? `${description.slice(0, 154).trimEnd()}...`
+      : description;
+
   return {
     title: product.name,
-    description: `${product.name}: ${product.categoryName} fabric. ${formatNaira(product.price)} per ${product.unit.name}.`,
-    alternates: { canonical: `/product/${product.slug}` },
+    description: socialDescription,
+
+    alternates: {
+      canonical: `/product/${product.slug}`,
+    },
+
+    openGraph: {
+      type: "website",
+      url: productUrl,
+      siteName: SITE.name,
+      locale: "en_NG",
+      title: `${product.name} | ${SITE.name}`,
+      description: socialDescription,
+      ...(productImage
+        ? {
+            images: [
+              {
+                url: productImage,
+                alt: `${product.name} — ${product.categoryName} fabric`,
+              },
+            ],
+          }
+        : {}),
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} | ${SITE.name}`,
+      description: socialDescription,
+      ...(productImage
+        ? {
+            images: [
+              {
+                url: productImage,
+                alt: `${product.name} — ${product.categoryName} fabric`,
+              },
+            ],
+          }
+        : {}),
+    },
   };
 }
 

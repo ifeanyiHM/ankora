@@ -3,7 +3,7 @@ import "@fontsource-variable/space-grotesk";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const ogImage = "/ankora_og.jpeg";
+const ogImage = "https://ankorastore.xyz/ankora_og.jpeg";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
