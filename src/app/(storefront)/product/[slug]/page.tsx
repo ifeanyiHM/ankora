@@ -84,8 +84,8 @@ export default async function ProductPage({
         / <span className="text-ink">{product.name}</span>
       </nav>
 
-      <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-14 xl1:gap-20 xl2:gap-24 xl3:grid-cols-[1.2fr_1fr] xl3:gap-28 xl4:gap-32">
-        <div className="lg:sticky lg:top-44 lg:self-start">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-14 xl1:gap-20 xl2:gap-24 xl3:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] xl3:gap-28 xl4:gap-32">
+        <div className="min-w-0 lg:sticky lg:top-44 lg:self-start">
           <ProductGallery
             product={product}
             sizes="(min-width:1024px) 55vw, 100vw"
