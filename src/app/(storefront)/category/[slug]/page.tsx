@@ -120,7 +120,7 @@ export default async function CategoryPage({
       </section>
 
       <Container className="py-12 xl1:py-20 xl2:py-24 xl3:py-28 xl4:py-32">
-        <div className="mb-8 flex items-end justify-between gap-4 border-t border-ink pt-5 xl1:mb-12 xl1:pt-6 xl3:mb-14 xl3:pt-7 xl4:mb-16">
+        <div className="mb-8 flex items-end justify-between gap-4 pt-5 xl1:mb-12 xl1:pt-6 xl3:mb-14 xl3:pt-7 xl4:mb-16">
           <h2 className="text-2xl font-bold tracking-tight md:text-4xl xl1:text-[2.6rem] xl3:text-5xl xl4:text-[3.2rem]">
             {sorted.length} {category.name} varieties
           </h2>
