@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-/** Horizontal list of the 14 fabric families, shown under the header on desktop.
+/** Horizontal list of the 12 fabric families, shown under the header on desktop.
  *  Below xl2 (where the row can overflow) a pair of arrow buttons on the right scrolls it;
  *  at xl2 and up the items spread out with justify-between and nothing overflows, so the
  *  arrows hide themselves. */

@@ -24,7 +24,7 @@ export default async function AdminCategoriesPage() {
       </h1>
 
       <p className="mb-6 text-muted xl1:mb-8 xl1:text-lg xl3:mb-10 xl3:text-xl">
-        The 14 fabric families. Edit their copy, specs and image; new categories
+        The fabric families. Edit their copy, specs and image; new categories
         aren&apos;t added here since products depend on them.
       </p>
 

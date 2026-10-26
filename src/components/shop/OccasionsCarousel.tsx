@@ -60,27 +60,34 @@ function OccasionCard({
     });
   }, [index, media, reduceMotion]);
 
+  // Mount only the current, previous and next slides so a card doesn't pull all of its images at once.
+  const isNear = (i: number) => {
+    const n = media.length;
+    return i === index || i === (index + 1) % n || i === (index + n - 1) % n;
+  };
+
   return (
     <article className="group relative isolate flex aspect-4/5 flex-col justify-between overflow-hidden rounded-sm bg-adire-deep">
-      {media.map((url, i) => (
-        <div
-          key={url + i}
-          aria-hidden={i !== index}
-          className={cn(
-            "absolute inset-0 transition-opacity duration-1400 ease-in-out",
-            i === index ? "opacity-100" : "opacity-0",
-          )}
-        >
-          <Image
-            src={url}
-            alt={i === index ? alt : ""}
-            fill
-            sizes={CARD_SIZES}
-            className="object-cover object-[center_20%]"
-          />
-        </div>
-      ))}
-      {/* <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/30 to-black/10 transition-colors duration-500 group-hover:from-black/90" /> */}
+      {media.map((url, i) =>
+        isNear(i) ? (
+          <div
+            key={url + i}
+            aria-hidden={i !== index}
+            className={cn(
+              "absolute inset-0 transition-opacity duration-1400 ease-in-out",
+              i === index ? "opacity-100" : "opacity-0",
+            )}
+          >
+            <Image
+              src={url}
+              alt={i === index ? alt : ""}
+              fill
+              sizes={CARD_SIZES}
+              className="object-cover object-[center_20%]"
+            />
+          </div>
+        ) : null,
+      )}
       <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/20 to-black/0 transition-colors duration-500 group-hover:from-black/90" />
 
       <div className="relative z-10 p-4 xl1:p-5 xl3:p-6">

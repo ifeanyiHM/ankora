@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 /** The five fabric families shown in the mosaic, in layout order: large, top-right, bottom-right, bottom-left, medallion. */
-const MOSAIC = ["aso-oke", "adire", "ankara", "kente", "lace"];
+const MOSAIC = ["aso-oke", "adire", "ankara", "brocade", "lace"];
 
 export default async function AboutPage() {
   const categories = await getCategories();
@@ -74,7 +74,7 @@ export default async function AboutPage() {
               Ankora is a Nigerian online store for traditional fabrics. We
               bring {count} fabric families together in one place, from
               handwoven aso oke and indigo adire to printed ankara, lace and
-              kente.
+              brocade.
             </p>
             <p>
               Every fabric has its own page, and every variety shows its price,

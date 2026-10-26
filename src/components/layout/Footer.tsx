@@ -37,11 +37,11 @@ export async function Footer() {
         <div>
           <h2 className={h}>Ankora</h2>
           <ul className="space-y-2.5 xl1:space-y-3">
-            <li>
+            {/* <li>
               <Link href="/shop" className={a}>
-                All fabrics
+                Shop
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/cart" className={a}>
                 Your cart
@@ -67,6 +67,18 @@ export async function Footer() {
                 {SITE.email}
               </a>
             </li>
+            {SITE.whatsapp && (
+              <li>
+                <a
+                  href={`https://wa.me/${SITE.whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={a}
+                >
+                  WhatsApp us
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </Container>

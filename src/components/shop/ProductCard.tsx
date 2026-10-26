@@ -87,30 +87,17 @@ export function ProductGrid({
   products: Product[];
   columns?: "full" | "sidebar";
 }) {
-  const [isDesktop, setIsDesktop] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const gridTopRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
-
-    const updateScreenSize = () => {
-      setIsDesktop(mediaQuery.matches);
-    };
-
-    updateScreenSize();
-    mediaQuery.addEventListener("change", updateScreenSize);
-
-    return () => {
-      mediaQuery.removeEventListener("change", updateScreenSize);
-    };
-  }, []);
 
   // Products per page:
   // Mobile: 8
   // Desktop full grid: 12
   // Desktop sidebar grid: 9
-  const pageSize = !isDesktop ? 8 : columns === "sidebar" ? 9 : 12;
+  // const pageSize = !isDesktop ? 8 : columns === "sidebar" ? 9 : 12;
+
+  // Products per page: 9 for the sidebar grid, 12 for the full grid, on every screen size.
+  const pageSize = columns === "sidebar" ? 9 : 12;
 
   const pageCount = Math.ceil(products.length / pageSize);
   const startIndex = (currentPage - 1) * pageSize;

@@ -93,9 +93,9 @@ const OCCASIONS: Occasion[] = [
   },
 ];
 
-const FACTS = [
+const getFacts = (familyCount: number) => [
   {
-    title: "14 fabric families",
+    title: `${familyCount} fabric families`,
     text: "From aso oke to vibrant ankara prints.",
   },
   {
@@ -145,8 +145,9 @@ export default async function HomePage() {
               Nigerian fabrics, cut by the yard
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted xl1:mt-8 xl1:max-w-2xl xl1:text-xl xl2:max-w-2xl xl3:mt-10 xl3:text-[1.35rem] xl4:max-w-184 xl4:text-2xl">
-              Aso Oke, Adire, Ankara, Lace, Kente and nine more fabric families.
-              Pick your cloth, set your quantity and pay securely in Naira.
+              Aso Oke, Adire, Ankara, Lace, Guinea Brocade and{" "}
+              {categories.length - 5} more fabric families. Pick your cloth, set
+              your quantity and pay securely in Naira.
             </p>
             <div className="mt-8 flex flex-wrap gap-3 xl1:mt-10 xl1:gap-4 xl3:mt-12 xl4:mt-14 xl4:gap-5">
               <ButtonLink href="/shop" size="lg">
@@ -166,7 +167,7 @@ export default async function HomePage() {
         className="border-y border-line"
       >
         <Container className="grid grid-cols-2 lg:grid-cols-4">
-          {FACTS.map((f, i) => (
+          {getFacts(categories.length).map((f, i) => (
             <div
               key={f.title}
               className={`px-0 py-6 pr-4 xl1:py-8 xl2:py-10 xl3:py-12 xl4:py-14 lg:px-6 lg:first:pl-0 ${i > 0 ? "lg:border-l lg:border-line" : ""} ${i % 2 === 1 ? "border-l border-line pl-4 lg:pl-6" : ""}`}
@@ -229,7 +230,7 @@ export default async function HomePage() {
             linkLabel="See all fabrics"
             className="border-0"
           />
-          <ProductGrid products={featured} />
+          <ProductGrid products={featured.slice(0, 8)} />
         </Container>
       </section>
 

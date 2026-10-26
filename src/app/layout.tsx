@@ -3,7 +3,7 @@ import "@fontsource-variable/space-grotesk";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const ogImage = "https://ankorastore.xyz/ankora_og.jpeg";
+const ogImage = `${SITE.url}/ankora_og.jpeg`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   description: SITE.description,
 
   applicationName: SITE.name,
+  alternates: { canonical: "/" },
 
   openGraph: {
     type: "website",
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Ankora — Nigerian and African fabrics, delivered",
-        type: "image/png",
+        type: "image/jpeg",
       },
     ],
   },
