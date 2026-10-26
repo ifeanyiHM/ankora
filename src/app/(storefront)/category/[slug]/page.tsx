@@ -67,7 +67,7 @@ export default async function CategoryPage({
 
   return (
     <>
-      <section className="bg-surface">
+      <section className="bg-surface-3">
         <Container className="grid items-center gap-8 py-10 md:grid-cols-[1.2fr_1fr] md:py-14 xl1:gap-16 xl1:py-20 xl2:py-24 xl3:grid-cols-[1.4fr_1fr] xl3:gap-20 xl3:py-28 xl4:py-32">
           <div>
             <nav aria-label="Breadcrumb" className="mb-5 text-sm text-muted">

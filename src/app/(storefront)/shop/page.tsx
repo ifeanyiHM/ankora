@@ -61,7 +61,7 @@ export default async function ShopPage({
 
   return (
     <Container className="py-6 md:py-12 xl1:py-16 xl2:py-18 xl3:py-20 xl4:py-24">
-      <div className="mb-8 flex flex-wrap items-baseline lg:items-end justify-between gap-4 lg:border-t border-ink pt-5 xl1:mb-10 xl1:pt-6 xl3:mb-12 xl3:pt-7 xl4:mb-14">
+      <div className="mb-8 flex flex-wrap items-baseline lg:items-end justify-between gap-4 pt-5 xl1:mb-10 xl1:pt-6 xl3:mb-12 xl3:pt-7 xl4:mb-14">
         <div>
           <h1 className="md:hidden text-3xl font-bold tracking-tight md:text-5xl xl1:text-6xl xl3:text-7xl xl4:text-[5rem]">
             {q ? `Results for “${q}”` : active ? active.name : "Fabrics"}

@@ -220,7 +220,7 @@ export function OccasionsCarousel({ occasions }: { occasions: Occasion[] }) {
   return (
     <section
       aria-label="Shop by occasion"
-      className="bg-occasions mt-20 overflow-hidden text-white xl1:mt-28 xl2:mt-32 xl3:mt-36 xl4:mt-44"
+      className="bg-occasions overflow-hidden text-white"
     >
       <Container className="py-16 lg:py-28 xl2:py-32 xl3:py-40 xl4:py-48">
         <div className="flex flex-wrap items-end justify-between gap-6 xl3:gap-8">

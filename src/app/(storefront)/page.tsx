@@ -184,12 +184,13 @@ export default async function HomePage() {
 
       <section
         id="fabrics"
-        className="scroll-mt-40 pt-16 xl1:pt-24 xl2:pt-28 xl3:pt-32 xl4:pt-40"
+        className="scroll-mt-40 py-16 xl1:py-24 xl2:py-28 xl3:py-32 xl4:py-40"
       >
         <Container>
           <SectionHeading
             title="Shop by fabric"
             description="Each family has its own page with every variety we stock."
+            className="border-0"
           />
           <div className="grid grid-cols-2 gap-x-3 gap-y-9 sm:grid-cols-3 sm:gap-x-4 lg:grid-cols-4 xl1:gap-x-5 xl1:gap-y-12 xl2:gap-y-14 xl3:gap-x-6 xl3:gap-y-16 xl4:gap-y-20">
             {categories.map((c) => {
@@ -220,12 +221,13 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      <section className="pt-20 xl1:pt-28 xl2:pt-32 xl3:pt-36 xl4:pt-44">
+      <section className="bg-surface-3 py-20 xl1:py-28 xl2:py-32 xl3:py-36 xl4:py-44">
         <Container>
           <SectionHeading
             title="Popular right now"
             href="/shop"
             linkLabel="See all fabrics"
+            className="border-0"
           />
           <ProductGrid products={featured} />
         </Container>
