@@ -1,40 +1,62 @@
 # Ankora
 
-Online store for Nigerian and African traditional fabrics. Next.js (App Router), TypeScript, Tailwind CSS 4, SQLite, Paystack.
+Online store for Nigerian and African traditional fabrics. Next.js (App Router), TypeScript, Tailwind CSS 4, Postgres (Neon), Paystack.
 
 ## Run it
 
 ```bash
 npm install
-cp .env.example .env.local        # fill in ADMIN_SESSION_SECRET at minimum, and your Paystack key
-npm run db:seed                   # creates the database, the 14 categories, 75 products, and the first admin login
+cp .env.example .env.local        # fill in DATABASE_URL and ADMIN_SESSION_SECRET at minimum, and your Paystack key
+npx tsx src/scripts/test-db-connection.ts   # optional: checks that .env.local can reach your Neon database
+npm run db:seed                   # adds the 14 categories, 75 products, and the first admin login to the database
+npm run db:migrate-blog           # creates the blog_posts table (safe to re-run; needed once per database)
 npm run dev                       # http://localhost:3000
 npm run build && npm start        # production
 ```
 
-The seed script prints the admin email/password it created (from `ADMIN_EMAIL` / `ADMIN_PASSWORD` in `.env.local`,
-or the defaults in `.env.example` if you don't set them). Sign in at `/admin/login` and change that password's
-source before going live — there's no in-app "change password" screen yet, so update `ADMIN_PASSWORD` and
-re-run a small script, or edit the `admin_users` table directly.
+The database is Postgres, hosted on [Neon](https://neon.tech). Create a Neon project, copy its connection
+string into `DATABASE_URL` in `.env.local`, and make sure the tables exist before seeding. The seed script only
+inserts rows; it does not create tables. The Postgres table definitions are in
+`src/scripts/migrate-sqlite-to-neon.cjs`, and `src/lib/db/schema.sql` is the old SQLite schema, kept for reference.
+
+The seed script prints the admin email it created (from `ADMIN_EMAIL` / `ADMIN_PASSWORD` in `.env.local`,
+or the defaults in `.env.example` if you don't set them). Sign in at `/admin/login` and change that password
+before going live. There's no in-app "change password" screen yet: set `ADMIN_EMAIL` and a new `ADMIN_PASSWORD`
+(at least 12 characters) in `.env.local`, then run `npx tsx src/scripts/update-admin.ts`. If there is more than
+one admin, also set `ADMIN_CURRENT_EMAIL` to the account you are changing.
+
+### Environment variables
+
+| Variable                                                        | Needed for                                                                                      |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `DATABASE_URL`                                                  | Neon connection string (pooled). Required.                                                      |
+| `DATABASE_URL_UNPOOLED`                                         | Optional direct (non-pooled) Neon connection string, preferred by the scripts in `src/scripts/` |
+| `ADMIN_SESSION_SECRET`                                          | Signing the admin login cookie. Required.                                                       |
+| `ADMIN_EMAIL`, `ADMIN_PASSWORD`                                 | The first admin account, used by `db:seed` and `update-admin.ts`                                |
+| `PAYSTACK_SECRET_KEY`                                           | Paystack payments and webhook signature check                                                   |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM` | Sending email (see Email below)                                                                 |
+| `NEXT_PUBLIC_SITE_URL`                                          | Public site address, used for links and the sitemap                                             |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER`                                   | Shows the footer WhatsApp link when set (digits only, with country code)                        |
+| `NEXT_PUBLIC_IMAGE_BASE_URL`                                    | Optional base URL for short image keys (see Images)                                             |
 
 ## Where things live
 
-| What | Where |
-| --- | --- |
-| Database (SQLite, one file) | `src/lib/db/` — `schema.sql`, `client.ts`, and `categories.ts` / `products.ts` / `orders.ts` / `admin.ts` |
-| Seed data (14 categories, 75 products) — used once by `db:seed` | `src/data/categories.ts`, `src/data/products.ts` |
-| Store settings: free-delivery threshold, dispatch time | `src/config/site.ts` |
-| Delivery zones and fees | `src/lib/delivery.ts` |
-| Allowed image hosts | `src/config/image-hosts.ts` |
-| Colours, fonts, breakpoints (xl1–xl4) | `src/app/globals.css` |
-| Cart state (persisted in the browser, self-contained) | `src/store/cart.ts` |
-| Order pricing (server re-checks price, unit and stock from the DB) | `src/lib/pricing.ts` |
-| Order numbers (`ANK-20260928-00124`) | `src/lib/order-number.ts` |
-| Paystack calls, webhook signature check | `src/lib/paystack.ts` |
-| Payment confirmation (stock, email, idempotent) | `src/lib/orders.ts` |
-| Admin session (JWT cookie), password hashing | `src/lib/auth-session.ts`, `src/lib/auth-password.ts`, `src/lib/admin-auth.ts` |
-| Route protection for `/admin/*` | `src/proxy.ts` (Next's middleware, renamed in Next 16) |
-| Email sending + templates | `src/lib/mail.ts`, `src/lib/email-templates.ts` |
+| What                                                               | Where                                                                                                                |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| Database (Postgres on Neon)                                        | `src/lib/db/` — `client.ts` (connection), and `categories.ts` / `products.ts` / `orders.ts` / `admin.ts` / `blog.ts` |
+| Seed data (14 categories, 75 products) — used once by `db:seed`    | `src/data/categories.ts`, `src/data/products.ts`                                                                     |
+| Store settings: free-delivery threshold, dispatch time             | `src/config/site.ts`                                                                                                 |
+| Delivery zones and fees                                            | `src/lib/delivery.ts`                                                                                                |
+| Allowed image hosts                                                | `src/config/image-hosts.ts`                                                                                          |
+| Colours, fonts, breakpoints (xl1–xl4)                              | `src/app/globals.css`                                                                                                |
+| Cart state (persisted in the browser, self-contained)              | `src/store/cart.ts`                                                                                                  |
+| Order pricing (server re-checks price, unit and stock from the DB) | `src/lib/pricing.ts`                                                                                                 |
+| Order numbers (`ANK-20260928-00124`)                               | `src/lib/order-number.ts`                                                                                            |
+| Paystack calls, webhook signature check                            | `src/lib/paystack.ts`                                                                                                |
+| Payment confirmation (stock, email, idempotent)                    | `src/lib/orders.ts`                                                                                                  |
+| Admin session (JWT cookie), password hashing                       | `src/lib/auth-session.ts`, `src/lib/auth-password.ts`, `src/lib/admin-auth.ts`                                       |
+| Route protection for `/admin/*`                                    | `src/proxy.ts` (Next's middleware, renamed in Next 16)                                                               |
+| Email sending + templates                                          | `src/lib/mail.ts`, `src/lib/email-templates.ts`                                                                      |
 
 ## How the storefront works
 
@@ -71,6 +93,11 @@ visitors are redirected to the login page, and every admin server action re-chec
   featured flag, and whether it's visible in the store.
 - **Categories** (`/admin/categories`) — edit copy, specs and image for the 14 fabric families.
   (Categories aren't added/removed from here, since products depend on them.)
+- **Blogs** (`/admin/blogs`) — write, edit, publish/unpublish and delete posts with a Tiptap rich-text editor
+  (headings, bold/italic/underline/strike, lists, quotes, links, images by URL). Drafts are only visible here.
+  Published posts appear at `/blogs` and `/blogs/<slug>`, in the latest-posts section above the homepage footer,
+  and in the sitemap. The only public link to the blog is in the footer. Images are added by URL, like products;
+  a post's cover image must come from a host listed in `src/config/image-hosts.ts`.
 - **Orders** (`/admin/orders`) — filter by status, search by order number/name/email/phone, open an
   order to see its items, customer and shipping details, and update its status, tracking number and
   courier. Paid customers are emailed automatically when the status changes.
@@ -82,14 +109,21 @@ logs what it would have sent instead of failing — so checkout and admin action
 without a mail server. Emails sent: order confirmation (on payment), and a status update whenever the
 admin changes a paid order's status (shipped, delivered, etc.).
 
-## Deployment note: SQLite
+## Deployment note: Neon Postgres
 
-The database is one SQLite file (`better-sqlite3`), so there's nothing to provision locally. This
-works well on a normal Node server — a VPS, Docker container, Railway, Render with a persistent disk.
-It does **not** work on plain serverless functions with an ephemeral filesystem (e.g. Vercel's default
-Node runtime), because writes disappear between invocations. If you deploy there, swap `src/lib/db/`
-for a client of a hosted database (Postgres on Neon/Supabase, PlanetScale, Turso, etc) — every other
-file only talks to `src/lib/db/*`, so the change is contained.
+The database is a hosted Neon Postgres database, reached through the `postgres` package in
+`src/lib/db/client.ts` using `DATABASE_URL`. Because the data lives outside the app server, the app works on
+serverless hosts such as Vercel as well as on a normal Node server. Set the same environment variables
+(see the table above) on your host.
+
+Run each one-off script against the right database: `db:seed` and `db:migrate-blog` use the `DATABASE_URL`
+in your local `.env.local`, so check which Neon branch that points at before running them. Don't run
+`db:seed` against a populated production database unless you mean to add any missing categories and products.
+Neon's free-tier databases can pause when idle, so the first request after a quiet period may be slower.
+
+The app moved from SQLite to Postgres. `src/scripts/migrate-sqlite-to-neon.cjs` is the one-off script that copied
+the old SQLite data across, and `backup/db-modules/` holds the old SQLite versions of the `src/lib/db/` files.
+Neither is used by the running app.
 
 ## Images
 
