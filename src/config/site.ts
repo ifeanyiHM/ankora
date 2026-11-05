@@ -1,7 +1,7 @@
 /** Store-wide settings. Edit policy values here. They are placeholders until you confirm them. */
 export const SITE = {
   name: "Ankora",
-  tagline: "Nigerian and African fabrics, delivered",
+  tagline: "Buy Nigerian Fabrics Online in Nigeria",
   description:
     "Shop Aso Oke, Adire, Akwete, Ankara and Lace fabrics by the yard, piece or set. Delivered across Nigeria.",
 
