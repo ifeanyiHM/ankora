@@ -12,6 +12,7 @@ import {
   getProductsByCategory,
 } from "@/lib/catalog";
 import type { Product } from "@/types";
+import { HomeBlogSection } from "../../components/blog/HomeBlogSection";
 import { OccasionsCarousel } from "../../components/shop/OccasionsCarousel";
 
 export const dynamic = "force-dynamic";
@@ -235,6 +236,7 @@ export default async function HomePage() {
       </section>
 
       <OccasionsCarousel occasions={OCCASIONS} />
+      <HomeBlogSection />
     </>
   );
 }

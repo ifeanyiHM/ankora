@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "db:seed": "tsx -r tsconfig-paths/register src/scripts/seed.ts"
+    "db:seed": "tsx -r tsconfig-paths/register src/scripts/seed.ts",
+    "db:migrate-blog": "tsx src/scripts/migrate-blog.ts"
   },
   "dependencies": {
     "@fontsource-variable/space-grotesk": "^5.3.0",
@@ -15,6 +16,12 @@
     "@neon/env": "^1.6.1",
     "@neondatabase/serverless": "^1.2.0",
     "@radix-ui/react-dialog": "^1.1.23",
+    "@tiptap/extension-image": "^3.32.2",
+    "@tiptap/extension-placeholder": "^3.32.2",
+    "@tiptap/html": "^3.32.2",
+    "@tiptap/pm": "^3.32.2",
+    "@tiptap/react": "^3.32.2",
+    "@tiptap/starter-kit": "^3.32.2",
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^13.0.3",
     "clsx": "^2.1.1",

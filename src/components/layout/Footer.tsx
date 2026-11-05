@@ -12,8 +12,8 @@ export async function Footer() {
     "text-[0.95rem] text-white/70 transition-colors hover:text-white xl1:text-base xl2:text-lg xl4:text-xl";
   return (
     <footer className=" bg-ink text-white">
-      <Container className="grid gap-12 py-16 md:grid-cols-[1.4fr_2fr_1fr] xl1:gap-16 lg:py-20 xl2:py-24 xl3:gap-20 xl3:py-28 xl4:py-32">
-        <div>
+      <Container className="grid grid-cols-10 gap-11 lg:gap-12 py-16 lg:grid-cols-[1.4fr_2fr_0.8fr_1fr] xl1:gap-16 lg:py-20 xl2:py-24 xl3:gap-20 xl3:py-28 xl4:py-32">
+        <div className="col-span-9 md:col-span-10 lg:col-span-1">
           <Logo light />
           <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-white/70 xl1:max-w-md xl1:text-base xl2:text-lg xl3:max-w-lg xl4:max-w-xl xl4:text-xl">
             {SITE.description}
@@ -22,9 +22,9 @@ export async function Footer() {
             Payments secured by Paystack
           </p>
         </div>
-        <div>
+        <div className="col-span-8 md:col-span-10 lg:col-span-1">
           <h2 className={h}>Fabrics</h2>
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5 xl1:gap-y-3 xl3:gap-x-8 xl4:gap-x-10">
+          <ul className="grid grid-cols-2 gap-x-11 lg:gap-x-6 gap-y-2.5 xl1:gap-y-3 xl3:gap-x-8 xl4:gap-x-10">
             {categories.map((c) => (
               <li key={c.slug}>
                 <Link href={`/category/${c.slug}`} className={a}>
@@ -34,14 +34,14 @@ export async function Footer() {
             ))}
           </ul>
         </div>
-        <div>
+        <div className="col-span-4 md:col-span-5 lg:col-span-1">
           <h2 className={h}>Ankora</h2>
           <ul className="space-y-2.5 xl1:space-y-3">
-            {/* <li>
+            <li>
               <Link href="/shop" className={a}>
                 Shop
               </Link>
-            </li> */}
+            </li>
             <li>
               <Link href="/cart" className={a}>
                 Your cart
@@ -50,6 +50,11 @@ export async function Footer() {
             <li>
               <Link href="/about" className={a}>
                 About us
+              </Link>
+            </li>
+            <li>
+              <Link href="/blogs" className={a}>
+                Blogs
               </Link>
             </li>
             <li>
@@ -62,6 +67,12 @@ export async function Footer() {
                 Track order
               </Link>
             </li>
+          </ul>
+        </div>
+        <div className="col-span-4 md:col-span-5 lg:col-span-1">
+          <h2 className={h}>Reach</h2>
+          <ul className="space-y-2.5 xl1:space-y-3">
+            <li className={a}>Online Store</li>
             <li>
               <a href={`mailto:${SITE.email}`} className={a}>
                 {SITE.email}
@@ -79,6 +90,11 @@ export async function Footer() {
                 </a>
               </li>
             )}
+            <li>
+              <Link href="/contact" className={a}>
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
       </Container>

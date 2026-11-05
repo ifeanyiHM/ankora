@@ -176,3 +176,33 @@ export interface AdminUser {
   email: string;
   name: string;
 }
+
+export type BlogStatus = "draft" | "published";
+
+/** A Tiptap document (`editor.getJSON()`), stored as JSONB. */
+export interface BlogContent {
+  type?: string;
+  attrs?: Record<string, unknown>;
+  content?: BlogContent[];
+  marks?: { type: string; attrs?: Record<string, unknown> }[];
+  text?: string;
+}
+
+/** Everything about a post except its body. Used by lists and cards. */
+export interface BlogPostSummary {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  coverImage: string | null;
+  status: BlogStatus;
+  readingMinutes: number;
+  /** ISO string. Null until the post has been published for the first time. */
+  publishedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BlogPost extends BlogPostSummary {
+  content: BlogContent;
+}

@@ -2,7 +2,13 @@
 
 import { Logo } from "@/components/brand/Logo";
 import { cn } from "@/lib/cn";
-import { LayoutDashboard, Package, Shapes, ShoppingCart } from "lucide-react";
+import {
+  LayoutDashboard,
+  Newspaper,
+  Package,
+  Shapes,
+  ShoppingCart,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LogoutButton } from "./LogoutButton";
@@ -12,6 +18,7 @@ const NAV = [
   { href: "/admin/products", label: "Products", icon: Package },
   { href: "/admin/categories", label: "Categories", icon: Shapes },
   { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
+  { href: "/admin/blogs", label: "Blogs", icon: Newspaper },
 ];
 
 export function AdminSidebar({ adminName }: { adminName: string }) {
