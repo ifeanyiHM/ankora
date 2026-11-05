@@ -12,9 +12,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // The blog is optional: a missing table must not break the whole sitemap.
   const posts = await listPublishedPosts({ limit: 1000 }).catch(() => []);
   return [
-    ...["", "/shop", "/about", "/delivery", "/track-order", "/blogs"].map(
-      (p) => ({ url: `${SITE.url}${p}`, lastModified: now }),
-    ),
+    ...[
+      "",
+      "/shop",
+      "/about",
+      "/delivery",
+      "/track-order",
+      "/blogs",
+      "/contact",
+    ].map((p) => ({ url: `${SITE.url}${p}`, lastModified: now })),
     ...categories.map((c) => ({
       url: `${SITE.url}/category/${c.slug}`,
       lastModified: now,

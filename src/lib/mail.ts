@@ -23,7 +23,12 @@ function transporter(): Transporter {
   return cached;
 }
 
-export interface MailMessage { to: string; subject: string; html: string; text: string }
+export interface MailMessage {
+  to: string;
+  subject: string;
+  html: string;
+  text: string;
+}
 
 /**
  * Sends an email, or logs it to the console when SMTP isn't configured, so the rest of the
@@ -36,9 +41,40 @@ export async function sendMail(message: MailMessage): Promise<void> {
     await transporter().sendMail({ from, ...message });
   } catch (err) {
     if (err instanceof MailConfigError) {
-      console.info(`[mail] SMTP not configured, skipping email to ${message.to}: ${message.subject}`);
+      console.info(
+        `[mail] SMTP not configured, skipping email to ${message.to}: ${message.subject}`,
+      );
     } else {
-      console.error(`[mail] Failed to send "${message.subject}" to ${message.to}:`, err);
+      console.error(
+        `[mail] Failed to send "${message.subject}" to ${message.to}:`,
+        err,
+      );
     }
+  }
+}
+
+/**
+ * Like sendMail, but tells the caller whether the email was actually sent. For messages a person
+ * is waiting on (e.g. the contact form), where "skipped because SMTP isn't set up" must not look like success.
+ */
+export async function trySendMail(
+  message: MailMessage & { replyTo?: string },
+): Promise<boolean> {
+  const from = process.env.SMTP_FROM ?? "Ankora <no-reply@ankora.ng>";
+  try {
+    await transporter().sendMail({ from, ...message });
+    return true;
+  } catch (err) {
+    if (err instanceof MailConfigError) {
+      console.warn(
+        `[mail] SMTP not configured, could not send "${message.subject}"`,
+      );
+    } else {
+      console.error(
+        `[mail] Failed to send "${message.subject}" to ${message.to}:`,
+        err,
+      );
+    }
+    return false;
   }
 }
