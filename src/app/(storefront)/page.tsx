@@ -159,7 +159,7 @@ export default async function HomePage() {
               </ButtonLink>
             </div>
           </div>
-          <HeroLoom products={loomProducts} />
+          <HeroLoom products={loomProducts} isNotFound={false} />
         </Container>
       </section>
 

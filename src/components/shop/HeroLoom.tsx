@@ -2,6 +2,7 @@ import { FabricArt } from "@/components/art/FabricArt";
 import type { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import { cn } from "../../lib/cn";
 
 const STRIPS = [
   {
@@ -35,22 +36,50 @@ const STRIPS = [
 ] as const;
 
 /** Five fabric strips standing like warp threads on a loom, each linking to its category. */
-export function HeroLoom({ products }: { products: Product[] }) {
+export function HeroLoom({
+  products,
+  stripe = STRIPS,
+  isNotFound = true,
+}: {
+  products: Product[];
+  stripe?: readonly { image: string; height: string }[];
+  isNotFound?: boolean;
+}) {
   return (
-    <div className="grid h-88 grid-cols-5 gap-2 sm:h-120 md:gap-3 lg:h-136 xl1:h-160 xl1:gap-3.5 xl2:h-168 xl3:h-176 xl3:gap-4 xl4:h-200 xl4:gap-5">
+    <div
+      style={
+        !isNotFound
+          ? {
+              gridTemplateColumns: `repeat(${products.length}, minmax(0, 1fr))`,
+            }
+          : undefined
+      }
+      // className={cn(
+      //   "grid h-88 gap-2 sm:h-120 md:gap-3 lg:h-136 xl1:h-160 xl1:gap-3.5 xl2:h-168 xl3:h-176 xl3:gap-4 xl4:h-200 xl4:gap-5",
+      // )}
+      className={cn(
+        "grid h-88 sm:h-120 lg:h-136 xl1:h-160 xl1:gap-3.5 xl2:h-168 xl3:h-176 xl4:h-200",
+        !isNotFound && "gap-2 md:gap-3 xl3:gap-4 xl4:gap-5",
+        isNotFound && "grid-cols-2",
+      )}
+    >
       {products.map((product, i) => {
-        console.log(product, i);
+        const strip = stripe[i] ?? STRIPS[i];
         return (
           <Link
             key={product.slug}
             href={`/category/${product.categorySlug}`}
             style={{ "--i": i } as React.CSSProperties}
-            className={`warp group relative block overflow-hidden rounded-sm ${STRIPS[i].height}`}
+            className={cn(
+              "warp group relative block overflow-hidden",
+              strip.height,
+              !isNotFound && "rounded-sm",
+            )}
             aria-label={`Shop ${product.categoryName}`}
           >
-            {"image" in STRIPS[i] ? (
+            {strip?.image ? (
               <Image
-                src={STRIPS[i].image}
+                src={strip.image}
                 alt={product.name}
                 fill
                 className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -63,9 +92,11 @@ export function HeroLoom({ products }: { products: Product[] }) {
                 className="size-full transition-transform duration-700 group-hover:scale-[1.04]"
               />
             )}
-            <span className="hidden md:inline absolute inset-x-1.5 bottom-1.5 truncate rounded-full bg-white px-2 py-1 text-center text-[0.7rem] font-semibold sm:text-xs xl1:inset-x-2.5 xl1:bottom-2.5 xl1:py-1.5 xl1:text-sm xl3:inset-x-3 xl3:bottom-3 xl3:px-3 xl3:py-2 xl3:text-base xl4:text-lg">
-              {product.categoryName}
-            </span>
+            {!isNotFound && (
+              <span className="hidden md:inline absolute inset-x-1.5 bottom-1.5 truncate rounded-full bg-white px-2 py-1 text-center text-[0.7rem] font-semibold sm:text-xs xl1:inset-x-2.5 xl1:bottom-2.5 xl1:py-1.5 xl1:text-sm xl3:inset-x-3 xl3:bottom-3 xl3:px-3 xl3:py-2 xl3:text-base xl4:text-lg">
+                {product.categoryName}
+              </span>
+            )}
           </Link>
         );
       })}

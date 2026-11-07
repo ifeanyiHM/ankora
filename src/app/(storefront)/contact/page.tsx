@@ -8,11 +8,13 @@ import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Questions about a fabric, a bulk order or your delivery? Get in touch with Ankora.",
+  description:
+    "Questions about a fabric, a bulk order or your delivery? Get in touch with Ankora.",
   alternates: { canonical: "/contact" },
 };
 
-const row = "grid gap-1 border-b border-line py-5 sm:grid-cols-[9rem_1fr] sm:gap-8 xl1:py-6 xl3:py-7";
+const row =
+  "grid gap-1 border-b border-line py-5 sm:grid-cols-[9rem_1fr] sm:gap-8 xl1:py-6 xl3:py-7";
 const term = "text-sm text-muted xl1:text-base xl3:text-lg";
 const link =
   "inline-flex items-center gap-1 font-semibold decoration-green decoration-2 underline-offset-4 hover:underline xl1:text-lg xl3:text-xl";
@@ -26,8 +28,8 @@ export default function ContactPage() {
             Contact
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft xl1:mt-8 xl1:max-w-2xl xl1:text-xl xl3:mt-10 xl3:text-2xl">
-            Choosing a cloth, planning an aso ebi order or checking on a delivery? Write to us and
-            we will help you choose.
+            Choosing a cloth, planning an aso ebi order or checking on a
+            delivery? Write to us and we will help you choose.
           </p>
 
           <dl className="mt-10 border-t border-ink xl1:mt-14 xl3:mt-16">
@@ -43,7 +45,12 @@ export default function ContactPage() {
               <div className={row}>
                 <dt className={term}>WhatsApp</dt>
                 <dd>
-                  <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer" className={link}>
+                  <a
+                    href={`https://wa.me/${SITE.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={link}
+                  >
                     Message us <ArrowUpRight className="size-4 xl1:size-5" />
                   </a>
                 </dd>
@@ -68,17 +75,23 @@ export default function ContactPage() {
           </dl>
 
           <SwatchImage
-            src={null}
+            src="https://i.pinimg.com/1200x/6f/52/62/6f5262da29419c0e727aac4314d82d85.jpg"
             pattern="aso-oke"
             colors={["#163D2A", "#D4A017", "#F5F5F0"]}
             alt=""
             sizes="40vw"
-            className="mt-12 hidden aspect-[16/7] rounded-sm lg:block xl1:mt-16"
+            className="mt-12 hidden aspect-16/7 rounded-sm lg:block xl1:mt-16"
           />
         </div>
 
-        <section aria-labelledby="contact-form-title" className="rounded-sm bg-surface-3 p-6 sm:p-8 xl1:p-12 xl3:p-14">
-          <h2 id="contact-form-title" className="mb-6 text-2xl font-bold xl1:mb-8 xl1:text-3xl xl3:text-4xl">
+        <section
+          aria-labelledby="contact-form-title"
+          className="rounded-sm bg-surface-3 p-6 sm:p-8 xl1:p-12 xl3:p-14"
+        >
+          <h2
+            id="contact-form-title"
+            className="mb-6 text-2xl font-bold xl1:mb-8 xl1:text-3xl xl3:text-4xl"
+          >
             Send us a message
           </h2>
           <ContactForm />
